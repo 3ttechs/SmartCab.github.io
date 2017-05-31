@@ -1,0 +1,49 @@
+CREATE TABLE CabData(
+   CAB_ID 	INT 	NOT NULL PRIMARY KEY,
+   CAB_TYPE	TEXT    NOT NULL,
+   CAB_NAME TEXT    NOT NULL
+);
+
+INSERT INTO CabData VALUES (1,'Innova','Innova 1');
+INSERT INTO CabData VALUES (2,'Innova','Innova 2');
+INSERT INTO CabData VALUES (3,'Audi','Audi 1');
+INSERT INTO CabData VALUES (4,'Benz','Benz 1');
+INSERT INTO CabData VALUES (5,'Benz','Benz 2');
+
+
+CREATE TABLE UserData(
+   USER_ID 		    INT 	NOT NULL PRIMARY KEY,
+   USER_TYPE 	    TEXT    NOT NULL,
+   USER_NAME	    TEXT    NOT NULL,
+   PASSWORD		    TEXT    NOT NULL,
+   CUSTOMER_NAME	TEXT    NOT NULL,
+   CUSTOMER_ADDRESS TEXT    NOT NULL,
+   CUSTOMER_PHONE	TEXT    NOT NULL
+);
+INSERT INTO UserData VALUES (1,'Admin','lakshmynarayanan.al@gmail.com','laxmy','Lakshmynarayanan','CMA-504, Bangalore','9448373533');
+INSERT INTO UserData VALUES (2,'Owner','tonyvalavi@gmail.com','tony','Tony Jacob','Banaswadi, Bangalore','9448476108');
+INSERT INTO UserData VALUES (3,'Customer','pssanthosh4@gmail.com','santhosh','Santhosh','Marathahalli, Bangalore','9886521179');
+INSERT INTO UserData VALUES (4,'Customer','chandrarao_ch@yahoo.com','chandra','Chandra Rao','Ramamurthy Nagar, Bangalore','9886713578');
+
+
+CREATE TABLE BookingData(
+   CAB_ID 		    INT 	 NOT NULL,
+   START_DATE_TIME  DATETIME NOT NULL,
+   END_DATE_TIME    DATETIME NOT NULL,
+   USER_ID        	INT      NOT NULL,
+   STATUS         	INT      NOT NULL, --(1 = Booked, 2= Not Available)
+   SOURCE         	TEXT	,
+   DESTINATION      TEXT
+);
+
+
+-- Owner (user_id=2) making a cab (cab_id =1) not available (status=2)
+INSERT INTO BookingData VALUES (1,'2017-05-08 09:00','2017-05-08 10:00',2,2);
+
+-- Customer (user_id=3) booking (status=1) a cab (cab_id =2) from  Airport to Whitefield
+INSERT INTO BookingData VALUES (2,'2017-05-08 10:30','2017-05-08 11:00',3,1,'Airport','Whitefield');
+
+-- Customer (user_id=4) booking (status=1) a cab (cab_id =3) from  Airport to Banaswadi
+INSERT INTO BookingData VALUES (3,'2017-05-07 10:30','2017-05-07 11:00',4,1,'Airport','Banaswadi');
+
+
